@@ -11,7 +11,7 @@ const Header = () => {
             <p className='text-3xl md:text-4xl lg:text-5xl text-white font-bold leading-tight md:leading-tight lg:leading-tight animate-slideUp'>
             Solar <p className='inline text-[#EE0000]'>Solutions</p><br /> for a Sustainable Tomorrow.
             </p>
-            <NavLink to={'/Login'}  onClick={()=>{navigate('/Login'); scrollTo(0,0)}} className='flex items-center gap-2 bg-[#EE0000] px-8 py-3 rounded-full text-primary text-lg m-auto md:m-0 hover:scale-110 transition-all duration-300 '>
+            <NavLink to={'/Login'}  className='flex items-center gap-2 bg-[#EE0000] px-8 py-3 rounded-full text-primary text-lg m-auto md:m-0 hover:scale-110 transition-all duration-300 '>
             Book appointments <img className='w-5' src={arrow} alt="" />
             </ NavLink> 
         </div>
