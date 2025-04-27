@@ -76,7 +76,7 @@ function LoginRegisterPage() {
         if (user.role === 'admin') {
           navigate('/AdminDashboard');
         } else {
-          navigate('/Profile');
+          navigate('/UserDashboard');
         }
       } else {
         setErrorMessage('Invalid credentials. Please try again.');
