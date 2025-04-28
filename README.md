@@ -1,6 +1,6 @@
 # Auits Project
 
-Auits Project is a modern, enhanced version of an e-commerce platform built with a focus on performance, usability, and features far superior to the original website. It offers a complete shopping experience for users and a robust management system for admins.
+Auits Project is a modern, enhanced version of [AUITS](https://www.auitspl.com/) platform built with a focus on performance, usability, and features far superior to the original website. It offers a complete shopping experience for users and a robust management system for admins.
 
 ## ✨ Features
 
