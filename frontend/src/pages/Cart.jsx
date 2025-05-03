@@ -75,10 +75,14 @@ const Cart = () => {
   };
 
   const proceedToCheckout = () => {
-    // Navigate to checkout page or show payment modal
-    // For now, we'll just show an alert
-    alert("Proceeding to checkout!");
-    // navigate("/checkout");
+    // Navigate to payment page with cart data
+    navigate("/payment", {
+      state: {
+        cartItems: cartItems,
+        totalAmount: totalAmount,
+        returnPath: "/cart"
+      }
+    });
   };
 
   return (

@@ -42,7 +42,7 @@ const AllProducts = () => {
         image: sp1,  // Using imported image
         price: 3999,
         originalPrice: 5999,
-        rating: 4.3,
+        rating: 69,
         tags: ["solar", "renewable-energy"]
       },
       {
@@ -51,7 +51,7 @@ const AllProducts = () => {
         image: sp2,  // Using imported image
         price: 8999,
         originalPrice: 12999,
-        rating: 4.7,
+        rating: 420,
         tags: ["solar", "hot", "renewable-energy"]
       },
       {
@@ -60,7 +60,7 @@ const AllProducts = () => {
         image: sp3,  // Using imported image
         price: 24999,
         originalPrice: 32999,
-        rating: 4.8,
+        rating: 111,
         tags: ["solar", "best-deals", "kit", "renewable-energy"]
       },
       // Inverters
@@ -70,7 +70,7 @@ const AllProducts = () => {
         image: inv1,  // Using imported image
         price: 5499,
         originalPrice: 7499,
-        rating: 4.2,
+        rating: 691,
         tags: ["inverter", "power-backup"]
       },
       {
@@ -79,7 +79,7 @@ const AllProducts = () => {
         image: inv2,  // Using imported image
         price: 9899,
         originalPrice: 12999,
-        rating: 4.6,
+        rating: 785,
         tags: ["inverter", "hot", "smart", "power-backup"]
       },
       // Street lights
@@ -89,7 +89,7 @@ const AllProducts = () => {
         image: sl1,  // Using imported image
         price: 2499,
         originalPrice: 3999,
-        rating: 4.1,
+        rating: 102,
         tags: ["street-light", "outdoor", "solar"]
       },
       {
@@ -98,7 +98,7 @@ const AllProducts = () => {
         image: sl2,  // Using imported image
         price: 4999,
         originalPrice: 6999,
-        rating: 4.5,
+        rating: 404,
         tags: ["street-light", "hot", "outdoor", "solar"]
       }
     ];

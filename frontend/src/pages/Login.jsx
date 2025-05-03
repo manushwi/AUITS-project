@@ -156,7 +156,7 @@ function LoginRegisterPage() {
   };
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-500 to-primary flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center ">
       <div className="w-full max-w-md bg-white rounded-xl shadow-xl overflow-hidden border border-red-300">
         {/* Header */}
         <div className="bg-gradient-to-r from-red-600 to-red-800 px-6 py-8 text-white text-center">
