@@ -54,12 +54,12 @@ export const ChatbotProvider = ({ children }) => {
     
     // Check for product inquiries
     if (lowerInput.includes('product') || lowerInput.includes('device') || lowerInput.includes('computer') || lowerInput.includes('laptop')) {
-      return "We offer a variety of tech products including computers, laptops, accessories, and more. You can check them out on our Products page or ask me for specific details.";
+      return "We offer a variety of solar products including accessories, and more. You can check them out on our Products page.";
     }
     
     // Check for service inquiries
     if (lowerInput.includes('service') || lowerInput.includes('repair') || lowerInput.includes('fix') || lowerInput.includes('support')) {
-      return "AUITS provides various IT services including repairs, support, and consultation. Our team specializes in troubleshooting, hardware repairs, software installations, and network configurations. Would you like to schedule an appointment for a service?";
+      return "AUITS provides various solar services including repairs, support, and consultation. Our team specializes in troubleshooting, hardware repairs and installations, and network configurations. Would you like to schedule an appointment for a service?";
     }
     
     // Check for appointment booking

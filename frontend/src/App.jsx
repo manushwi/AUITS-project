@@ -20,7 +20,7 @@ import Payment from './pages/Payment'
 
 const App = () => {
   const location = useLocation();
-    
+  
   // Define routes where navbar should be hidden
   const hideNavbarRoutes = ['/UserDashboard', '/AdminDashboard'];
   const shouldShowNavbar = !hideNavbarRoutes.includes(location.pathname);
@@ -30,27 +30,27 @@ const App = () => {
   const shouldShowChatbot = !hideChatbotRoutes.includes(location.pathname);
 
   return (
-    <ChatbotProvider>
-      <div className='mx-4 sm:mx-[10%]'>
-        {shouldShowNavbar && <Navbar />}
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/Blog' element={<Blog />} />
-          <Route path='/About' element={<About />} />
-          <Route path='/Login' element={<Login />} />
-          <Route path='/Process' element={<Process />} />
-          <Route path="/GovernmentSubsidies" element={<GovernmentSubsidies />} />
-          <Route path='/Products' element={<Products />} />
-          <Route path='/Cart' element={<Cart />} />
-          <Route path='/WhatWeOffer' element={<WhatWeOffer />} />
-          <Route path='/AdminDashboard' element={<AdminDashboard />} />
-          <Route path='/UserDashboard' element={<UserDashboard />} />
-          <Route path='/Payment' element={<Payment />} />
-        </Routes>
-        <Footer />
-        {shouldShowChatbot && <ChatbotComponent />}
-      </div>
-    </ChatbotProvider>
+      <ChatbotProvider>
+        <div className='mx-4 sm:mx-[10%]'>
+          {shouldShowNavbar && <Navbar />}
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/Blog' element={<Blog />} />
+            <Route path='/About' element={<About />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/Process' element={<Process />} />
+            <Route path="/GovernmentSubsidies" element={<GovernmentSubsidies />} />
+            <Route path='/Products' element={<Products />} />
+            <Route path='/Cart' element={<Cart />} />
+            <Route path='/WhatWeOffer' element={<WhatWeOffer />} />
+            <Route path='/AdminDashboard' element={<AdminDashboard />} />
+            <Route path='/UserDashboard' element={<UserDashboard />} />
+            <Route path='/Payment' element={<Payment />} />
+          </Routes>
+          <Footer />
+          {shouldShowChatbot && <ChatbotComponent />}
+        </div>
+      </ChatbotProvider>
   )
 }
 

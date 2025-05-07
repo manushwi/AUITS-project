@@ -21,6 +21,10 @@ const AllProducts = () => {
   const [sortOrder, setSortOrder] = useState("default");
   const [filteredProducts, setFilteredProducts] = useState([]);
   
+  // Add price range states
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  
   // Define our new product categories
   const allProducts = React.useMemo(() => {
     // Start with existing products but update their names and prices
@@ -104,6 +108,21 @@ const AllProducts = () => {
     ];
   }, []);
 
+  // Calculate price range for the UI
+  const priceRange = React.useMemo(() => {
+    if (allProducts.length === 0) return { min: 0, max: 0 };
+    
+    let min = Number.MAX_SAFE_INTEGER;
+    let max = 0;
+    
+    allProducts.forEach(product => {
+      if (product.price < min) min = product.price;
+      if (product.price > max) max = product.price;
+    });
+    
+    return { min, max };
+  }, [allProducts]);
+
   // Apply filters and sorting
   useEffect(() => {
     try {
@@ -118,6 +137,17 @@ const AllProducts = () => {
           const tagMatch = product.tags.some(tag => tag.toLowerCase().includes(searchLower));
           return nameMatch || tagMatch;
         });
+      }
+      
+      // Apply price range filter
+      if (minPrice !== "") {
+        const minPriceValue = Number(minPrice);
+        result = result.filter(product => product.price >= minPriceValue);
+      }
+      
+      if (maxPrice !== "") {
+        const maxPriceValue = Number(maxPrice);
+        result = result.filter(product => product.price <= maxPriceValue);
       }
       
       // Apply sorting
@@ -142,10 +172,18 @@ const AllProducts = () => {
       console.error("Error filtering products:", error);
       setFilteredProducts(allProducts); // Fallback to all products
     }
-  }, [allProducts, searchTerm, sortOrder]);
+  }, [allProducts, searchTerm, sortOrder, minPrice, maxPrice]);
   
   const handleSearch = (e) => {
     e.preventDefault();
+  };
+
+  // Reset all filters
+  const handleResetFilters = () => {
+    setSearchTerm("");
+    setMinPrice("");
+    setMaxPrice("");
+    setSortOrder("default");
   };
   
   return (
@@ -155,7 +193,7 @@ const AllProducts = () => {
           All Products
         </h1>
         
-        {/* Search Box */}
+        {/* Search and Filter Box */}
         <div className="mb-6 bg-white p-4 rounded-lg shadow">
           <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
             <div className="flex-grow">
@@ -169,6 +207,61 @@ const AllProducts = () => {
             </div>
           </form>
           
+          {/* Price Range Filter */}
+          <div className="mt-4 border-t border-gray-200 pt-4">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Price Range (₹)</h3>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-gray-500">Min:</span>
+                <input
+                  type="number"
+                  placeholder={priceRange.min}
+                  className="w-full sm:w-32 px-3 py-2 border border-gray-300 rounded"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                  min={priceRange.min}
+                  max={priceRange.max}
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-gray-500">Max:</span>
+                <input
+                  type="number"
+                  placeholder={priceRange.max}
+                  className="w-full sm:w-32 px-3 py-2 border border-gray-300 rounded"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  min={priceRange.min}
+                  max={priceRange.max}
+                />
+              </div>
+              <button
+                type="button"
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm"
+                onClick={() => {
+                  if (minPrice !== "" || maxPrice !== "") {
+                    setFilteredProducts(
+                      allProducts.filter(product => {
+                        const meetsMinPrice = minPrice === "" || product.price >= Number(minPrice);
+                        const meetsMaxPrice = maxPrice === "" || product.price <= Number(maxPrice);
+                        return meetsMinPrice && meetsMaxPrice;
+                      })
+                    );
+                  }
+                }}
+              >
+                Apply Price Filter
+              </button>
+              <button
+                type="button"
+                className="text-gray-600 px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 text-sm"
+                onClick={handleResetFilters}
+              >
+                Reset All Filters
+              </button>
+            </div>
+          </div>
+          
           {/* Price Sorting */}
           <div className="mt-4 flex justify-end">
             <select 
@@ -181,6 +274,11 @@ const AllProducts = () => {
               <option value="highToLow">Price: High to Low</option>
             </select>
           </div>
+        </div>
+        
+        {/* Product Count */}
+        <div className="mb-4 text-gray-600 font-medium">
+          {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
         </div>
         
         {/* Product Grid */}
@@ -249,6 +347,19 @@ const AllProducts = () => {
             </div>
           ))}
         </div>
+        
+        {/* No Products Found Message */}
+        {filteredProducts.length === 0 && (
+          <div className="bg-white p-8 rounded-lg shadow text-center">
+            <p className="text-lg text-gray-600">No products found matching your filters.</p>
+            <button
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              onClick={handleResetFilters}
+            >
+              Reset Filters
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
